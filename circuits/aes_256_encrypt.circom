@@ -37,6 +37,8 @@ template AES256Encrypt()
     component num2bits_1[13][4][4];
     component xor_3[13][4][32];
 
+    var temp;
+
     for(i=0; i<13; i++)
     {
         for(j=0; j<4; j++)
@@ -48,8 +50,8 @@ template AES256Encrypt()
                 var s_tmp[32] = s[(j+k)%4];
                 
                 for(l=0; l<8; l++) bits2num_1[i][j][k].in[l] <== s_tmp[k*8+7-l];
-
-                num2bits_1[i][j][k].in <-- emulated_aesenc_enc_table(k, bits2num_1[i][j][k].out);
+                temp = emulated_aesenc_enc_table(k, bits2num_1[i][j][k].out);
+                num2bits_1[i][j][k].in <-- temp;
 
                 if(k==0)
                 {

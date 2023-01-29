@@ -8,23 +8,7 @@ template EmulatedAesencRowShifting()
     signal input in[16];
     signal output out[16];
     
-    var byte_order[16];
-    byte_order[0]  = 0;
-    byte_order[1]  = 5;
-    byte_order[2]  = 10;
-    byte_order[3]  = 15;
-    byte_order[4]  = 4;
-    byte_order[5]  = 9;
-    byte_order[6]  = 14;
-    byte_order[7]  = 3;
-    byte_order[8]  = 8;
-    byte_order[9]  = 13;
-    byte_order[10] = 2;
-    byte_order[11] = 7;
-    byte_order[12] = 12;
-    byte_order[13] = 1;
-    byte_order[14] = 6;
-    byte_order[15] = 11;
+    var byte_order[16] = [0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12, 1, 6, 11];
 
     for(var i=0; i<16; i++) out[i] <== in[byte_order[i]];
 }

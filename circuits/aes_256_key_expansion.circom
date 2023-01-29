@@ -39,6 +39,7 @@ template AES256KeyExpansion()
     component num2bits_1[60][5];
     component xor_2[60][8];
 
+    var temp1, temp2, temp3, temp4;
 
     while(i<(Nb*(Nr+1)))
     {
@@ -50,22 +51,26 @@ template AES256KeyExpansion()
             bits2num_1[i][0] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][0].in[j] <== tmp[7-j];
             num2bits_1[i][0] = Num2Bits(8);
-            num2bits_1[i][0].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][0].out);
+            temp1 = emulated_aesenc_rijndael_sbox(bits2num_1[i][0].out);
+            num2bits_1[i][0].in <-- temp1;
 
             bits2num_1[i][1] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][1].in[j] <== tmp[7-j+8];
             num2bits_1[i][1] = Num2Bits(8);
-            num2bits_1[i][1].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][1].out);
+            temp2 = emulated_aesenc_rijndael_sbox(bits2num_1[i][1].out);
+            num2bits_1[i][1].in <-- temp2;
 
             bits2num_1[i][2] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][2].in[j] <== tmp[7-j+16];
             num2bits_1[i][2] = Num2Bits(8);
-            num2bits_1[i][2].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][2].out);
+            temp3 = emulated_aesenc_rijndael_sbox(bits2num_1[i][2].out);
+            num2bits_1[i][2].in <-- temp3;
 
             bits2num_1[i][3] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][3].in[j] <== tmp[7-j+24];
             num2bits_1[i][3] = Num2Bits(8);
-            num2bits_1[i][3].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][3].out);
+            temp4 = emulated_aesenc_rijndael_sbox(bits2num_1[i][3].out);
+            num2bits_1[i][3].in <-- temp4;
 
             for(j=0; j<8; j++) tmp[j+24] = num2bits_1[i][0].out[7-j];
             for(j=0; j<8; j++) tmp[j] = num2bits_1[i][1].out[7-j];
@@ -89,22 +94,26 @@ template AES256KeyExpansion()
             bits2num_1[i][0] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][0].in[j] <== tmp[7-j];
             num2bits_1[i][0] = Num2Bits(8);
-            num2bits_1[i][0].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][0].out);
+            temp1 = emulated_aesenc_rijndael_sbox(bits2num_1[i][0].out);
+            num2bits_1[i][0].in <-- temp1;
 
             bits2num_1[i][1] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][1].in[j] <== tmp[7-j+8];
             num2bits_1[i][1] = Num2Bits(8);
-            num2bits_1[i][1].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][1].out);
+            temp2 = emulated_aesenc_rijndael_sbox(bits2num_1[i][1].out);
+            num2bits_1[i][1].in <-- temp2;
 
             bits2num_1[i][2] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][2].in[j] <== tmp[7-j+16];
             num2bits_1[i][2] = Num2Bits(8);
+            temp3 = emulated_aesenc_rijndael_sbox(bits2num_1[i][2].out);
             num2bits_1[i][2].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][2].out);
 
             bits2num_1[i][3] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][3].in[j] <== tmp[7-j+24];
             num2bits_1[i][3] = Num2Bits(8);
-            num2bits_1[i][3].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][3].out);
+            temp4 = emulated_aesenc_rijndael_sbox(bits2num_1[i][3].out);
+            num2bits_1[i][3].in <-- temp4;
 
             for(j=0; j<8; j++) tmp[j] = num2bits_1[i][0].out[7-j];
             for(j=0; j<8; j++) tmp[j+8] = num2bits_1[i][1].out[7-j];
