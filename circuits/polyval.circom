@@ -12,7 +12,8 @@ template POLYVAL(n_bits)
     signal input T[2][64];
     signal output result[2][64];
 
-    var current_res[2][64] = T, in_t[2][64];
+    var in_t[2][64];
+    var current_res[2][64];
 
     var i, j, k;
     var blocks = msg_len/16;
@@ -35,7 +36,7 @@ template POLYVAL(n_bits)
                 for(k=0; k<64; k++)
                 {
                     xor_1[i][j][k] = XOR();
-                    xor_1[i][j][k].a <== current_res[j][k];
+                    xor_1[i][j][k].a <== T[j][k];
                     xor_1[i][j][k].b <== in_t[j][k];
 
                     current_res[j][k] = xor_1[i][j][k].out;
@@ -55,6 +56,9 @@ template POLYVAL(n_bits)
             current_res = gfmul_int_1[i].res;
         }
     }
+
+    // Introduce a bug by our modification.
+    // Modify to be compilable.
 
     for(i=0; i<2; i++)
     {

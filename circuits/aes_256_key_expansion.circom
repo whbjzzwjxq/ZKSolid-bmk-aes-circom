@@ -107,7 +107,7 @@ template AES256KeyExpansion()
             for(j=0; j<8; j++) bits2num_1[i][2].in[j] <== tmp[7-j+16];
             num2bits_1[i][2] = Num2Bits(8);
             temp3 = emulated_aesenc_rijndael_sbox(bits2num_1[i][2].out);
-            num2bits_1[i][2].in <-- emulated_aesenc_rijndael_sbox(bits2num_1[i][2].out);
+            num2bits_1[i][2].in <-- temp3;
 
             bits2num_1[i][3] = Bits2Num(8);
             for(j=0; j<8; j++) bits2num_1[i][3].in[j] <== tmp[7-j+24];
